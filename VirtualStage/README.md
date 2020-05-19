@@ -1,12 +1,12 @@
 # Virtual Stage
 
-The Virtual Stage lab allows speakers to record themselves at an usual environment as their home or office, and generates a video like they were in a professional studio with a green screen.
+The Virtual Stage lab allows speakers to record themselves at their usual place like their home or office and generates a video as if they were in a professional studio with a green screen.
 
 It consists of two applications:
 
 * [__Speaker Recorder App__](#speaker-recorder-app): allows you to record a lecture using an Azure Kinect device.
 * [__Background Matting__](#background-matting): processes the video to remove the background with great quality.
-  * [__Kinect Mask Generator__](#kinect-mask-generator): CLI that generates the body segmentation from an Azure Kinect Video
+  * [__Kinect Mask Generator__](#kinect-mask-generator): CLI that generates the body segmentation from an Azure Kinect Video.
 
 ## How to capture videos
 
@@ -14,11 +14,11 @@ Camera must be in a fixed base like a tripod.
 
 For Azure Kinect video capturing, use the [Azure Kinect recorder](https://docs.microsoft.com/bs-latn-ba/azure/Kinect-dk/azure-kinect-recorder) or the _Speaker Recorder_ app.
 
-Five seconds of background (no person in the camera) must be recorded at the beginning.
-To this end, start recording standing outside the scene. Then, after five seconds, enter the scene and start your performance.
+Five seconds of background (with nobody in the recording field) must be recorded at the beginning.
+To this end, start recording standing outside of the scene. Then, after five seconds, enter the scene and start your performance.
 
 ## Speaker Kit
-All the speakers that used this tecnology to record their sesions for MS BUILD 2020 received a pack with the following items:
+All the speakers that used this technology to record their sessions for MS BUILD 2020 received a pack with the following items:
 
 *	1 x Laptop
     * 9th Generation Intel Core i7 
@@ -31,18 +31,18 @@ All the speakers that used this tecnology to record their sesions for MS BUILD 2
 *	2 x Tripods for the MS Azure Kinects
 *	(optional) 1 x USB Presenter. Used to pass the slides on the PowerPoint presentation.
 *	(optional) 1 x Wireless Microphone. For a better sound quality.
-* (optional) 1 x USB Hub - To conect USB presenter and Wireless Microphone
+* (optional) 1 x USB Hub - To connect USB presenter and Wireless Microphone
 *	(optional) 2 x Light diffusers
 
 ### Speaker Environment setup
-The following ilustration shows the environment that was asked to the speakers to prepare at their homes to make the recording. 
+The following illustration shows the setup the speakers installed in their homes to make the recording. 
 
 
-![Speaker environment setup](./Images/environment-setup.png "Speaker environment setup ilustration")
+![Speaker environment setup](./Images/environment-setup.png "Speaker environment setup illustration")
 
 -	A clear space of at least 11.5ft/3.5m x 11.5ft/3.5m is needed.
 -	Select the place where the speaker will present. Behind the speaker there should be at least 3.2ft/1m of free space and no windows or light or reflection sources. It could be good to put a mark on the floor.
-    - The back of the speaker must be mostly static, ideally walls, and its color as much as possible complementary to the speaker clothes and hair.
+- The back of the speaker must be mostly static, ideally walls, and its color as much as possible complementary to the speaker clothes and hair.
 -	Mount the first Azure Kinect on the tripod and place it in front of the speaker, at 7.5ft/2.3m away from the speaker position. The Azure Kinect should be 3.6ft/1.1m height above the ground. Later you can adjust the position better.
 -	Mount the second Azure Kinect on the tripod and place it at about 45 degrees in front of the presenter and 3.3ft/1m away. Later we will adjust the position better. 
 -	Assemble the light diffusers and position them approximately as shown in the image.
@@ -50,21 +50,21 @@ The following ilustration shows the environment that was asked to the speakers t
 
 ## Notes on environment set-up
 
-For best results capture images following these guidelines:
+For best results, capture images following these guidelines:
 
-* Results choose a background that is mostly static. It can be both indoor and outdoor.
+* Choose a background that is mostly static. It can be both indoor and outdoor.
 * Avoid casting any shadows of the speaker on the background.
   * The speaker should be at least 4 feet away from the background.
-  * if possible adjust the lighting to avoid strong shadows on the background.
-* Avoid reflections in the background and the subject (for example glasses reflections could introduce some errors).
+  * if possible, adjust the lighting to avoid strong shadows on the background.
+  * Avoid reflections in the background and the subject (for example glasses reflections could introduce some errors).
 * Avoid large color coincidences between subject and background. (e.g. Do not wear a white shirt in front of a white wall background.)
   * In general, background colors should be as complementary as possible to the speaker ones.
   * Avoid scenes where the subject moves in front of a background that have many color changes.
-* If there is some part of the background that is causing errors, and changing the background is not possible, the speaker could try to hide that part with some element. If using a fabric, be sure to put it in a way that it does not have wrinkles. Otherwise results may not improve.
+* If some part of the background is causing errors, and changing the background is not possible, the speaker could try to hide that part. If using a fabric, be sure to put it in a way that it does not have wrinkles. Otherwise results may not improve.
 * To minimize shadows/errors in certain floors, a carpet or rug can help.
 * If using a general camera, lock AE/AF (Auto-exposure and Auto-focus) of the camera
 
-If using an Azure Kinect camera, take into account these recommendations as well:
+If using an Azure Kinect camera, consider these recommendations as well:
 
 * Lock the exposure of the camera (Speaker Recorder App already do that for the speaker).
 * Avoid using loose/airy clothes like big skirts.
@@ -82,7 +82,7 @@ Speaker Recorder is a .Net Core 3 app built using WPF and UWP APIs, that offers 
 
 * Record from up to two Azure Kinect devices.
   * Using [Azure Kinect SDK](https://github.com/microsoft/Azure-Kinect-Sensor-SDK) custom built from pull request [#822](https://github.com/microsoft/Azure-Kinect-Sensor-SDK/pull/822).
-* Record a PowerPoint slide show including the audio from the default input device.
+  * Record a PowerPoint slide including the audio from the default input device.
   * Using the UWP GraphicsCaptureItem API and [NAudio](https://github.com/naudio/NAudio).
 
 ![Speaker Recorder App](./Images/Kinect1.jpg "Speaker Recorder app screenshot" )
@@ -97,13 +97,13 @@ When the application starts, it will recognize the connected Azure Kinect device
 * Upload the result to Azure Storage (you must configure the ConnectionString in the app.settings.json file).
   * The [Azure Storage Data Movement Library](https://github.com/Azure/azure-storage-net-data-movement) allows us to manage the upload of the recorded files due to their huge size.
 
-In the bottom right corner of the recorder page there is a button "View Recorded Sesions" that allow the speaker to see all the recordings that have been done. Each recording is label with date and time on the right panel.
+In the bottom right corner of the recorder page there is a button "View Recorded Sessions" that allow the speaker to see all the recordings that have been done. Each recording is label with date and time on the right panel.
 
-The player allows the speaker to watch video of each of the Azure Kinects and PowerPoint video if this was used at the time of recording. By clicking on the miniature it swaps it with the video on the main player.
+The player allows the speaker to watch video of each of the Azure Kinects and PowerPoint video if this was used at the time of recording. By clicking on the miniature, it swaps it with the video on the main player.
 
 ![Speaker Recorder App](./Images/speaker-app-player.png "Speaker Recorder app screenshot" )
 
-If the speaker want to delete or recover the videos to process them. The videos are located in the folder "C:\Users\{user-name}\Documents\My recorded sesions". Another way to access each specific sesion is by right-click on each of the recordings on the right panel and click "Open Sesion Folder" button
+If the speaker wants to delete or recover the videos to process them. The videos are located in the folder "C:\Users\{user-name}\Documents\My recorded sessions". Another way to access each specific session is by right-click on each of the recordings on the right panel and click "Open Session Folder" button
 
 
 ![Speaker Recorder App](./Images/speaker-app-recordings.png "Speaker Recorder app screenshot" )
@@ -125,7 +125,7 @@ To run the application, the following prerequisites must be installed:
 
 
 ### Record a session
-When the environment is setup, all the  prerequisites are installed and the app is already running, you can start to record. 
+When the environment is setup, all the prerequisites are installed and the app is already running, you can start to record. 
 If you have loaded a PowerPoint in the application and the cameras are ON, all content is ready, and the application Record button is enabled.
 
 First, select the view you need to see in the main viewer during the presentation, normally the Power Point, clicking in the image.
@@ -156,13 +156,13 @@ This work is based on [Background Matting: The World is Your Green Screen](http:
 
 ### Improvements over the original work
 
-By using the Azure Kinect sensor depth capabilities to segment the speaker we
+By using the Azure Kinect sensor depth capabilities to segment the speaker, we
 improve the precision of the background matting, and reduce the errors
-considerably when processing videos with non favorable backgrounds.
+considerably when processing videos with non-favorable backgrounds.
 
 Due to the lack of labeled training data showcasing people standing, the AI is trained with 512x512 square images/videos where the AI cannot see more than people's hips or knees, resulting in not good quality when matting full HD videos of people standing.
 
-This implementation manage to obtain fine-grain quality in zones like hair, hands or feet in these cases by splitting the body in two square images with a small overlapping and processing them separately.
+This implementation manages to obtain fine-grain quality in zones like hair, hands or feet in these cases by splitting the body in two square images with a small overlapping and processing them separately.
 
 ### Requirements
 
@@ -200,7 +200,7 @@ This implementation manage to obtain fine-grain quality in zones like hair, hand
 
 ### Removing the background
 
-Put the videos you want to process in a folder, and create an output folder in your system as well. Using fast storage disks will short the total processing time.
+Put the videos you want to process in a folder and create an output folder in your system as well. Using fast storage disks will shorten the total processing time.
 
 Edit `run.ps1` accordingly to parameters below and run it on _PowerShell_.
 
@@ -272,3 +272,4 @@ Example of `run.ps1`:
 #### Kinect Mask Generator
 
 To get the body segmentation from the Azure Kinect Video, the app uses a small CLI tool written in C++. [Check it out](KinectMaskGenerator/)!.
+
